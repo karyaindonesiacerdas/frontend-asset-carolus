@@ -1,0 +1,13 @@
+image: thomass/curl
+before_script:
+  - export CHAT_ID=-643159836
+  - export BOT_TOKEN=689724943:AAEUh5IluBgm1GCmnVIfEM46EjhqUbJxbeA
+  - curl -F chat_id=${CHAT_ID} -F text="*[FE][${GITLAB_USER_NAME}]*:${CI_COMMIT_MESSAGE}" -F parse_mode="Markdown" https://api.telegram.org/bot${BOT_TOKEN}/sendMessage
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - pwd

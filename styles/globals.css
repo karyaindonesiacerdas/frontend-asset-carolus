@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .primary-action-button {
+    @apply flex items-center py-2 pl-4 pr-6 space-x-2 text-sm font-semibold text-white transition rounded-full shadow-sm bg-primary-600 hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 dark:text-gray-900;
+  }
+
+  .secondary-action-button {
+    @apply px-6 py-2 text-sm font-semibold transition rounded-full bg-primary-100 text-primary-700 hover:text-white hover:bg-primary-500 dark:bg-gray-800 dark:text-primary-500 dark:hover:bg-gray-700 disabled:bg-primary-100 disabled:text-primary-400 disabled:hover:bg-primary-100 disabled:cursor-not-allowed;
+  }
+
+  .danger-action-button {
+    @apply px-6 py-2 text-sm font-semibold text-red-700 transition bg-red-100 rounded-full hover:bg-red-200 dark:bg-gray-800 dark:text-red-500 dark:hover:bg-gray-700;
+  }
+
+  .badge-green {
+    @apply text-xs font-semibold rounded-full px-2 pt-0.5 pb-1 uppercase bg-green-100 text-green-700 dark: bg-green-800 dark:text-green-100;
+  }
+
+  .badge-red {
+    @apply text-xs font-semibold rounded-full px-2 pt-0.5 pb-1 uppercase bg-red-100 text-red-700 dark: bg-red-800 dark:text-red-100;
+  }
+
+  .badge-blue {
+    @apply text-xs font-semibold rounded-full px-2 pt-0.5 pb-1 uppercase bg-blue-100 text-blue-700 dark: bg-blue-800 dark:text-blue-100;
+  }
+
+  .badge-yellow {
+    @apply text-xs font-semibold rounded-full px-2 pt-0.5 pb-1 uppercase bg-yellow-100 text-yellow-700 dark: bg-yellow-800 dark:text-yellow-100;
+  }
+
+  .badge-gray {
+    @apply text-xs font-semibold rounded-full px-2 pt-0.5 pb-1 uppercase text-gray-700 bg-gray-100;
+  }
+}
+
+.fc-button-primary {
+  background-color: #b39959 !important;
+  border-color: #ffffff !important;
+}
+
+.fc-button-primary:hover {
+  background-color: #dab96b !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: #d4d4d8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #374151;
+}
+
+.dark .fc-toolbar-title {
+  color: white
+}
+
+.dark .fc-col-header-cell-cushion {
+  color: white;
+}
+
+.dark .fc-event-time {
+  color: white;
+}
+
+.dark .fc-event-title {
+  color: white;
+}
+
+.dark .fc-daygrid-day-number {
+  color: white;
+}
