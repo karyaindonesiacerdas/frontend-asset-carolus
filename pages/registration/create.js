@@ -217,7 +217,7 @@ const App = () => {
         let data = res.data.data;
         setDataManager(res.data.data);
 
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             id: item.id,
             name: item.name,
@@ -243,7 +243,7 @@ const App = () => {
         setDataPicId(res.data.data);
 
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             id: item.id,
             name: item.name,
@@ -266,7 +266,7 @@ const App = () => {
       .then((res) => {
         // console.log("model", res)
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item.model_name,
@@ -285,7 +285,7 @@ const App = () => {
       .then((res) => {
         // console.log("brand", res)
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item?.brand_name,
@@ -304,7 +304,7 @@ const App = () => {
       .then((res) => {
         // console.log("departemen", res)
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item.dep_name,
@@ -323,7 +323,7 @@ const App = () => {
       .then((res) => {
         // console.log("umdns", res)
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item.name,
@@ -342,7 +342,7 @@ const App = () => {
       .then((res) => {
         // console.log("type", res)
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item.type_name,
@@ -361,7 +361,7 @@ const App = () => {
       .then((res) => {
         // console.log('GMDN', res.data.data)
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item.name,
@@ -391,7 +391,7 @@ const App = () => {
     HttpRequestExternal.getBuilding()
       .then((res) => {
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item?.name,
@@ -410,7 +410,7 @@ const App = () => {
     HttpRequestExternal.getFloor()
       .then((res) => {
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item.name,
@@ -429,7 +429,7 @@ const App = () => {
     HttpRequestExternal.getRoom()
       .then((res) => {
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item.room_name,
@@ -449,7 +449,7 @@ const App = () => {
       .then((res) => {
         // console.log("supplier", res)
         let data = res.data.data;
-        let looping = data.map((item, index) => {
+        let looping = data?.map((item, index) => {
           return {
             value: item.id,
             label: item?.supplier_name == "" ? "-" : item?.supplier_name,
@@ -1691,7 +1691,7 @@ const App = () => {
                         },
                       })}
                     >
-                      {dataManager.map((item, model) => {
+                      {dataManager?.map((item, model) => {
                         return (
                           <option key={model} value={item.name}>
                             {item.name}
@@ -1735,7 +1735,7 @@ const App = () => {
                         },
                       })}
                     >
-                      {dataPicId.map((item, model) => {
+                      {dataPicId?.map((item, model) => {
                         return (
                           <option key={model} value={item.name}>
                             {item.name}
