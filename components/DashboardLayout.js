@@ -329,6 +329,19 @@ export default function DashboardLayout({ children, href }) {
                   <Menu.Items className="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-900 ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <Menu.Item>
                       {({ active }) => (
+                        <a
+                          href="/change-password"
+                          className={classNames(
+                            active ? "bg-gray-100 dark:bg-gray-800" : "",
+                            "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 w-full text-left dark:hover:bg-gray-800"
+                          )}
+                        >
+                          Change Password
+                        </a>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
                         <button
                           onClick={() => {
                             setLogoutModal(true);

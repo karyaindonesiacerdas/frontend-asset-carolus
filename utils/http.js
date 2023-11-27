@@ -527,6 +527,9 @@ export const HttpRequestExternal = {
   updateUser(id, data) {
     return requestWithCookies().put("/user/user/update-from-admin/" + id, data);
   },
+  updatePassword(data) {
+    return requestWithCookies().put("/user/user/update-password-from-admin/", data);
+  },
   deleteUser(id) {
     return requestWithCookies().delete("/user/user/delete-from-admin/" + id);
   },
