@@ -12,6 +12,7 @@ import Select from "react-select";
 
 import toast, { Toaster } from "react-hot-toast";
 import moment from "moment";
+import { store } from "../../store";
 
 const notifyDel = () => toast.success("Successfully Delete!");
 const notifyDelDel = () => toast.error("Failed Delete!");
@@ -61,6 +62,8 @@ export default function App(props) {
   const [limitEndDate, setLimitEndDate] = useState(
     moment().format("YYYY-MM-DD")
   );
+
+  const user = store.getState().user;
 
   const {
     register,
@@ -137,24 +140,41 @@ export default function App(props) {
   }, [dataRegistration]);
 
   const getListUserAll = useCallback(() => {
-    setIsLoadingEmploye(true);
-    HttpRequestExternal.getListUser()
-      .then((res) => {
-        let data = res.data.data;
-        let looping = data.map((item, index) => {
-          return {
-            value: item.id,
-            label: item.name,
-          };
+    if (
+      ![
+        "super-admin",
+        "admin",
+        "hospital-admin",
+        "asset-manager",
+        "asset-pic",
+      ].includes(user?.employee?.role?.alias)
+    ) {
+      setAllDataUser([
+        {
+          value: user.user.data.data.id,
+          label: user.user.data.data.name,
+        },
+      ]);
+    } else {
+      setIsLoadingEmploye(true);
+      HttpRequestExternal.getListUser()
+        .then((res) => {
+          let data = res.data.data;
+          let looping = data.map((item, index) => {
+            return {
+              value: item.id,
+              label: item.name,
+            };
+          });
+          setIsLoadingEmploye(false);
+          setAllDataUser(looping);
+        })
+        .catch((err) => {
+          setIsLoadingEmploye(false);
+          let data = "Load Data List User";
+          notifyGagal(data);
         });
-        setIsLoadingEmploye(false);
-        setAllDataUser(looping);
-      })
-      .catch((err) => {
-        setIsLoadingEmploye(false);
-        let data = "Load Data List User";
-        notifyGagal(data);
-      });
+    }
   }, [dataAllUser]);
 
   const getDataBuilding = useCallback(() => {
@@ -546,9 +566,9 @@ export default function App(props) {
                     />
                   </div>
                 </div>
-                <hi className="p-4 text-sm font-bold text-gray-900 dark:text-white">
+                <h1 className="p-4 text-sm font-bold text-gray-900 dark:text-white">
                   Quantity :
-                </hi>
+                </h1>
                 <div className="flex flex-row p-4">
                   <div>
                     <Input

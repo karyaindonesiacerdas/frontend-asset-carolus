@@ -12,7 +12,7 @@ import MySelect from "../../components/MySelect";
 import Select from "react-select";
 import moment from "moment";
 import Photo from "../../utils/Photo";
-
+import { store } from "../../store";
 import toast, { Toaster } from "react-hot-toast";
 
 const notifyDel = () => toast.success("Successfully Delete!");
@@ -825,6 +825,9 @@ export default function App(props) {
   };
 
   let defaultImage = "https://api.ivf.aplikasitrial.com/";
+
+  const user = store.getState().user;
+
   return (
     <div className="flex flex-col px-4 mb-6 sm:px-6 md:px-8 ">
       <Link href={`/registration`}>
@@ -1689,7 +1692,13 @@ export default function App(props) {
                   {/* </div> */}
                 </div>
               </div>
-              {isEdit == true && (
+
+              {[
+                "super-admin",
+                "admin",
+                "hospital-admin",
+                "asset-manager",
+              ].includes(user?.employee?.role?.alias) && (
                 <div className="flex flex-row">
                   <div className="flex flex-1"></div>
                   <Button
@@ -1697,8 +1706,6 @@ export default function App(props) {
                     onClick={() => {
                       setEdit(false);
                     }}
-                    // isLoading={isSubmitting}
-                    // disabled={isEdit}={!confirmIdentity || !confirmSignature}
                   >
                     Edit
                   </Button>

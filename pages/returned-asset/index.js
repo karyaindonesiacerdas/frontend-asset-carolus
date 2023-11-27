@@ -21,8 +21,17 @@ export default function App(props) {
     setIsLoading(true);
     HttpRequestExternal.getAssetReturn()
       .then((response) => {
-        setListData(response.data.data);
-        // console.log("data list registerd", response.data.data)
+        if (
+          ["super-admin", "admin", "hospital-admin", "asset-manager"].includes(
+            user?.employee?.role?.alias
+          )
+        ) {
+          setListData(response.data.data);
+        } else {
+          const user_id = user.user.data.data.id;
+          const data = response.data.data;
+          setListData(data.filter((item) => item.user_id === user_id));
+        }
         setIsLoading(false);
       })
       .catch((error) => {

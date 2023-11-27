@@ -156,6 +156,7 @@ export default function DashboardLayout({ children, href }) {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [logoutModal, setLogoutModal] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const logout = useCallback(() => {
     setTimeout(() => {
@@ -164,7 +165,16 @@ export default function DashboardLayout({ children, href }) {
     }, 1000);
   }, []);
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {
+    {
+      ((user?.employee?.role &&
+        ["super-admin", "admin", "hospital-admin", "asset-manager"].includes(
+          user?.employee?.role?.alias
+        )) ||
+        OPEN_ALL) &&
+        setOpenMenu(true);
+    }
+  }, [user]);
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -219,16 +229,9 @@ export default function DashboardLayout({ children, href }) {
               <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="flex-1 px-2 space-y-1 bg-white dark:bg-gray-900">
                   <div className="flex flex-col flex-1 px-2">
-                    <DashboardNav />
+                    {openMenu && <DashboardNav />}
                     <AssetManagementNav />
-                    {((user?.employee?.role &&
-                      [
-                        "super-admin",
-                        "admin",
-                        "hospital-admin",
-                        "asset-manager",
-                      ].includes(user?.employee?.role?.alias)) ||
-                      OPEN_ALL) && (
+                    {openMenu && (
                       <>
                         <LabelManagementNav />
                         <UserManagementNav />
@@ -251,16 +254,9 @@ export default function DashboardLayout({ children, href }) {
             </div>
             <div className="flex flex-col flex-grow mt-5">
               <nav className="flex-1 px-2 space-y-1 bg-white dark:bg-gray-900">
-                <DashboardNav />
+                {openMenu && <DashboardNav />}
                 <AssetManagementNav />
-                {((user?.employee?.role &&
-                  [
-                    "super-admin",
-                    "admin",
-                    "hospital-admin",
-                    "asset-manager",
-                  ].includes(user?.employee?.role?.alias)) ||
-                  OPEN_ALL) && (
+                {openMenu && (
                   <>
                     <LabelManagementNav />
                     <UserManagementNav />

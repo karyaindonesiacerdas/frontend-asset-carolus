@@ -14,7 +14,6 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import toast, { Toaster } from "react-hot-toast";
-import { ErrorMessage } from "@hookform/error-message";
 import moment from "moment";
 
 const notifyDel = () => toast.success("Successfully Delete!");
