@@ -331,7 +331,8 @@ export default function App(props) {
                   <QrReader
                     className="w-32 h-auto"
                     constraints={{
-                      constraints: { video: true, audio: false },
+                      audio: false,
+                      video: { facingMode: "environment" },
                     }}
                     onResult={(result, error) => {
                       if (!!result) {
